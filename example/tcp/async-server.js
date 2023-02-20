@@ -17,13 +17,17 @@ server.asyncAccept((error,client) =>{
     return;
   }
 
-  client.asyncRecv(100, 0, (err, result ) => {
+  client.asyncRecv(100, 0, (err, result) => {
     if(err) {
       console.log('error');
       client.close(c);
       return;
     }
-    console.log(String.fromCharCode(...result));
+    if (result.length) {
+      console.log(String.fromCharCode(...result));
+    } else if (client.closeStatus) {
+      client.close();
+    }
   })
 
 });
