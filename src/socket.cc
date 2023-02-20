@@ -9,11 +9,7 @@ sockaddr_in value_to_addr(Napi::Value orgv){
     int sin_family = addr.Get("sin_family").As<Napi::Number>().Int32Value();
     int sin_port = addr.Get("sin_port").As<Napi::Number>().Int32Value();
     unsigned int sin_addr = addr.Get("s_addr").As<Napi::Number>().Uint32Value();
-    #if 0
-    printf("sin: family=%d, port=%d (0x%08X <- 0x%08X), addr=0x%08X <- 0x%08X\n",
-        sin_family, sin_port, htons(sin_port), sin_port, htonl(sin_addr), sin_addr);
-    #endif //0
-    
+
     struct sockaddr_in sockaddr;
     memset(&sockaddr, 0, sizeof(sockaddr));  //每个字节都用0填充
     sockaddr.sin_family = sin_family;
