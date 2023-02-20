@@ -3,3 +3,4 @@ build
 *.lock
 *.test.js
 .vscode
+/.idea/
